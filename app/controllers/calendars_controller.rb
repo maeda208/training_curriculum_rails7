@@ -12,10 +12,10 @@ class CalendarsController < ApplicationController
     redirect_to action: :index
   end
 
-  private
+ private
+    def plan_params
+    params.require(:plan).pemit(:date, :plan)
 
-  def plan_params
-    params.require(:plan).permit(:date, :plan)
   end
 
   def getWeek
@@ -39,13 +39,18 @@ class CalendarsController < ApplicationController
       wday_num = Date.today.wday + x
 
       if wday_num >= 7
+
         wday_num = wday_num - 7
       end
       
       days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: today_plans, wday: wdays[wday_num]}
+<<<<<<< HEAD
 =======
       days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => today_plans}
 >>>>>>> parent of 18c29e1 (Merge pull request #7 from maeda208/first_traning)
+=======
+
+>>>>>>> 9e085f25707837d2781f663e0c31b473d336e9b1
       @week_days.push(days)
     end
 
